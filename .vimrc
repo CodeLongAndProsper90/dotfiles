@@ -1,4 +1,4 @@
-set autoindent
+
 syntax on
 set nocompatible
 filetype off
@@ -10,12 +10,13 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'preservim/nerdtree'
 Plugin 'junegunn/vim-easy-align'
-
+Plugin 'JamshedVesuna/vim-markdown-preview'
 """""""""""""""""""""""""""""""""""""""""""""
 Plugin 'arcticicestudio/nord-vim'
 Plugin 'sjl/badwolf'
 Plugin 'chriskempson/base16-vim'
 Plugin 'romainl/Apprentice'
+Plugin 'mr-ubik/vim-hackerman-syntax'
 """""""""""""""""""""""""""""""""""""""""""""
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'preservim/nerdcommenter'
@@ -24,6 +25,9 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'dart-lang/dart-vim-plugin'
 Plugin 'google/vim-maktaba'
 Plugin 'google/vim-codefmt'
+Plugin 'sudar/vim-arduino-syntax'
+Plugin 'SirVer/ultisnips'
+Plugin 'sudar/vim-arduino-snippets'
 " Also add Glaive, which is used to configure codefmt's maktaba flags. See
 " `:help :Glaive` for usage.
 Plugin 'google/vim-glaive'
@@ -47,7 +51,17 @@ colo badwolf
 augroup d
   autocmd!
   autocmd BufNewFile *.d r ~/.vim/defaults/d
-  nnoremap <F5> :w<CR>
-  nnoremap <F6> :!xterm -hold -e "rdmd %" &<CR><CR>
+  autocmd BufNewFile *.d nnoremap <F5> :w<CR>
+  autocmd BufNewFile *.d nnoremap <F6> :w<CR>:!xterm -hold -e "rdmd %" &<CR><CR>
+  autocmd BufNewFile *.d nnoremap <F7> :! killall xterm <CR>
+  autocmd BufNewFile *.d nnoremap <F8> :! xterm -e "dmd %; <CR><CR>
+
+  autocmd BufNewFile *.d colo ingretu
+
+  autocmd BufNewFile *.d  echom "Env setup for D programming. <F5> to save. <F6> to run. <F7> to close xterm. <F8> to compile"
 augroup END
+
+
+let vim_markdown_preview_hotkey='<C-m>'
+colo darkblue
 
